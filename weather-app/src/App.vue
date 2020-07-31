@@ -7,14 +7,14 @@
           class="search-bar"
           placeholder="Search..."
           v-model="query"
+          @keyup.enter="fetchWeather"
         />
-        {{query}}
       </div>
 
-      <div class="weather-wrap">
+      <div class="weather-wrap" v-if="typeof weather.main != 'undefined' ">
 
         <div class="location-box">
-          <div class="location"> Northampton, UK</div>
+          <div class="location"> {{ weather.name }}, {{ weather.sys.country }}</div>
           <div class="date"> Monday 20 January 2020</div>
         </div>
 
@@ -37,9 +37,20 @@ export default {
   data () {
     return {
       api_key: '',
-      url_base: 'https://api.openweathermap.org/data/2.5/', //what needs to go at the front of the api request
+      url_base: "https://api.openweathermap.org/data/2.5/", //what needs to go at the front of the api request
       query: '', //
       weather: {} // to store the data we get back
+    }
+  },
+  methods: {
+    fetchWeather() {
+      fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+      .then(response => {
+        return response.json()
+      }).then(this.setResults);
+    },
+    setResults(results) {
+      this.weather = results;
     }
   }
 }
