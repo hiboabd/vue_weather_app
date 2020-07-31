@@ -9,6 +9,19 @@
         />
       </div>
 
+      <div class="weather-wrap">
+        <div class="location-box">
+        <div class="location"> Northampton, UK</div>
+        <div class="date"> Monday 20 January 2020</div>
+      </div>
+
+      <div class="weather-app">
+        <div class="temp">9°c</div>
+        <div class="weather">Rain</div>
+      </div>
+
+      </div>
+
     </main>
   </div>
 </template>
@@ -20,7 +33,7 @@ export default {
   name: 'App',
   data () {
     return {
-      api_key: ''
+      api_key: 'eccd5c4075d532fe23880baede2dde62'
     }
   }
 }
