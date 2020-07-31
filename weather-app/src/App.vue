@@ -15,11 +15,11 @@
 
         <div class="location-box">
           <div class="location"> {{ weather.name }}, {{ weather.sys.country }}</div>
-          <div class="date"> Monday 20 January 2020</div>
+          <div class="date"> {{dateBuilder()}}</div>
         </div>
 
         <div class="weather-box">
-          <div class="temp">{{Math.round(weather.main.temp)}}</div>
+          <div class="temp">{{Math.round(weather.main.temp)}}°C</div>
           <div class="weather">{{weather.weather[0].main}}</div>
         </div>
 
@@ -36,7 +36,7 @@ export default {
   name: 'App',
   data () {
     return {
-      api_key: '',
+      api_key: 'eccd5c4075d532fe23880baede2dde62',
       url_base: "https://api.openweathermap.org/data/2.5/", //what needs to go at the front of the api request
       query: '', //
       weather: {} // to store the data we get back
@@ -51,6 +51,19 @@ export default {
     },
     setResults(results) {
       this.weather = results;
+    },
+    dateBuilder() {
+      let d = new Date();
+      let months = ["January", "February", "March", "April", "May", "June", "July",
+      "August", "September", "October", "November", "December"];
+      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+      let day = days[d.getDay()];
+      let date = d.getDate();
+      let month = months[d.getMonth()];
+      let year = d.getFullYear();
+
+      return `${day} ${date} ${month} ${year}`
     }
   }
 }
