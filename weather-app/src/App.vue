@@ -6,7 +6,9 @@
           type="text"
           class="search-bar"
           placeholder="Search..."
+          v-model="query"
         />
+        {{query}}
       </div>
 
       <div class="weather-wrap">
@@ -34,7 +36,10 @@ export default {
   name: 'App',
   data () {
     return {
-      api_key: ''
+      api_key: '',
+      url_base: 'https://api.openweathermap.org/data/2.5/', //what needs to go at the front of the api request
+      query: '', //
+      weather: {} // to store the data we get back
     }
   }
 }
@@ -55,7 +60,7 @@ body {
 #app {
   background-image: url('./assets/cold-bg.jpg');
   background-size: cover;
-  background-posiiton: bottom;
+  background-position: bottom;
   transition: 0.4s;
 }
 
@@ -83,7 +88,7 @@ main {
   background: none;
 
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 0px 16px 0px 16px;
   transition: 0.4s;
 }
